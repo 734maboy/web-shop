@@ -1,32 +1,64 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar
+      dark
+      app
+      color="primary"
+    >
+      <div class="d-flex align-center">
+        <v-btn
+          depressed
+          large
+          text
+          class="white--text"
+        >
+          WebShop
+        </v-btn>
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <router-link
+        v-for="route in routes"
+        :key="route.path"
+        :to="route.path">
+          <v-btn 
+            color="secondary"
+            class="mx-2"
+          >
+            {{route.title}}
+          </v-btn>
+      </router-link>
+
+
+
+      
+    </v-app-bar>
+
+    <v-container fluid fill-height>
+      <v-main class="fill-height">
+        <router-view/>
+      </v-main>
+    </v-container>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import routes from './router/routes';
 
-#nav {
-  padding: 30px;
-}
+export default {
+  name: 'App',
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  data: () => ({
+    routes: routes,
+  }),
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  created() {
+    this.$store.dispatch('user/getListOfRoles');
+  },
+
+  
+
+
+};
+</script>
