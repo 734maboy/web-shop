@@ -142,7 +142,6 @@
         
         this.$emit('fillData', item);
         this.editedIndex = this.items.indexOf(item);
-        console.log('Выбран элемент ', this.editedIndex);
         this.dialog = true
         
       },
@@ -176,7 +175,6 @@
       },
 
       save () {
-        console.log(this.editedIndex);
         if (this.editedIndex > -1) {
           this.$emit('saveItem');
         } else {

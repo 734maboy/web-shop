@@ -1,17 +1,22 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
+import routerInit from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import WebClient from './middleware/WebClient';
 
-Vue.config.productionTip = false
+import RStore from './store/RStore';
 
 Vue.config.productionTip = false
-// const router = routerInit(store);
+const router = routerInit(store);
 
 WebClient.$router = router;
 WebClient.$store = store;
+
+RStore.subscribe('afterUpdate', state => {
+  store.dispatch(state ? 'user/loginFromState' : 'unsetUserData', state);
+  router.replace('/ping').catch(e => console.log(e));
+});
 
 new Vue({
   router,

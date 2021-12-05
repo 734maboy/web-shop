@@ -29,10 +29,15 @@
             {{route.title}}
           </v-btn>
       </router-link>
-
-
-
       
+      <v-btn
+        v-if="isLogged"
+        color="secondary"
+        class="mx-2"
+        @click="logOut"
+      >
+        Выйти
+      </v-btn>
     </v-app-bar>
 
     <v-container fluid fill-height>
@@ -54,8 +59,21 @@ export default {
   }),
 
   created() {
-    this.$store.dispatch('user/getListOfRoles');
+    // this.$store.dispatch('user/getListOfRoles');
   },
+
+  methods: {
+    logOut() {
+      this.$store.dispatch('user/logOut');
+    },
+  },
+
+
+  computed: {
+    isLogged() {
+      return this.$store.getters['user/isLogged'];
+    }
+  }
 
   
 

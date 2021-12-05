@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import modules from './modules';
+import RStore from './RStore';
+import WebClient from '../middleware/WebClient';
 import initialModules from './initialModules';
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
+const initialState = () => ({
     rules: {
 		
       required: v => {
@@ -48,13 +49,29 @@ export default new Vuex.Store({
         };
       }
     },
-  },
+});
+
+export default new Vuex.Store({
+  state: initialState,
   getters: {
 		getRules: state => state.rules,
   },
   mutations: {
+    UNSET_DATA: state => state = initialState(),
   },
   actions: {
+    unsetUserData({ commit, dispatch }) {
+      Object.keys(modules).forEach(module => {
+        commit(`${module}/UNSET_DATA`);
+      });
+      commit('UNSET_DATA');
+      dispatch('saveToLocaleStorage');
+			WebClient.logout();
+		},
+
+    saveToLocaleStorage(_, data) {
+      RStore.initState(data);
+    },
   },
   modules: initialModules(modules),
 })

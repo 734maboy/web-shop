@@ -21,8 +21,6 @@ export default {
     let formData = new FormData();
     fillFormData(formData, logInfo);
     let resp = (await this.apiClient.post('getToken', formData)).data;
-    console.log(resp);
-    if (!resp.message) this.apiClient.login(resp['access_token']);
     return resp;
   },
 

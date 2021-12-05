@@ -23,7 +23,7 @@ export const mutations = {
   },
 
   UPDATE_USER: (state, { user, roles} ) => {
-    console.log(user);
+     (user);
     state.users.map((item) => {
       if (item.id == user.id) {
         item.login = user.login;
@@ -39,13 +39,13 @@ export const mutations = {
 export const actions = {
   async getUsersList({commit}, _) {
     let users = await AdminService.getAllUsers();
-    console.log(users);
+     (users);
     commit('SET_USERS_LIST', users);
   },
 
   async createNewUser({commit, rootGetters}, user) {
     let roleId = (rootGetters['user/getListOfRoles']).find(item => item.roleName == user.role);
-    console.log(user);
+     (user);
     let requestData = {
       login: user.login,
       password: user.password,
@@ -68,7 +68,7 @@ export const actions = {
 
   async updateUser({commit, rootGetters}, user) {
     let roles = rootGetters['user/getListOfRoles'];
-    console.log(roles);
+     (roles);
     let userData = {
       id: user.id,
       login: user.login,

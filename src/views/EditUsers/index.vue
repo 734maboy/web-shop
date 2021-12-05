@@ -95,7 +95,7 @@ export default {
     },
 
     fillData(item) {
-      console.log(item);
+       (item);
       this.editedItem = item;
     },
 

@@ -71,12 +71,12 @@ export const actions = {
 
   async getAllProducts({commit}, _) {
     let products = await ProductService.getAllProducts();
-    console.log(products);
+     (products);
     commit('SET_PRODUCTS_LIST', products);
   },
   async getAllCategories({commit}, _) {
     let categories = await ProductService.getAllCategories();
-    console.log(categories);
+     (categories);
     commit('SET_CATEGORIES_LIST', categories);
   },
 
@@ -104,7 +104,7 @@ export const actions = {
       price: product.price,
       categoryId: category.id,
     });
-    console.log(productFromServer);
+     (productFromServer);
     commit('ADD_PRODUCT_TO_LIST', productFromServer);
   },
 };

@@ -12,7 +12,6 @@ export default {
     fillFormData(formData, user);
 
     let resp = (await this.apiClient.post('createUser', formData)).data;
-    console.log(resp);
     return resp;
   },
 
@@ -30,7 +29,6 @@ export default {
     fillFormData(formData, data);
 
     let resp = (await this.apiClient.post('updateUser', formData)).data;
-    console.log(resp);
     return resp;
   },
 };

@@ -67,7 +67,7 @@ export default {
 
   methods: {
     fillData(item) {
-      console.log(item);
+       (item);
       this.editedItem = item;
     },
 

@@ -1,4 +1,15 @@
 
+/**
+ * Мутация очистки состояния приложения
+ * @param {State} state Текущее состояние приложения
+ * @param {State} newState Новое состояние приложения
+ */
+ const UNSET_DATA = (state, newState) => {
+  Object.keys(newState).forEach(prop => {
+    state[prop] = newState[prop];
+  })
+};
+
 export default (modules) => {
   Object.keys(modules).forEach(m => {
     let module = modules[m];
