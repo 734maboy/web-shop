@@ -23,6 +23,11 @@ export const mutations = {
     state.orders.push(...data.orders);
   },
 
+  SET_ORDERS: (state, orders) => {
+    state.orders = new Array();
+    state.orders.push(...orders);
+  },
+
   ADD_ORDER: (state, order) => {
     state.orders.push(order);
   },
@@ -53,6 +58,11 @@ export const actions = {
     }));
     commit('ADD_ORDER', resp.order);
      (state.orders);
+  },
+
+  async getUserOrders({commit}, customerId) {
+    let resp = await CustomerService.getUserOrders({customerId,});
+    commit('SET_ORDERS', resp)
   },
 
   

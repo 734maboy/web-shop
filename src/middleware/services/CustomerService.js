@@ -15,4 +15,11 @@ export default {
     this.apiClient.post('deleteOrder', formData);
   },
 
+  async getUserOrders(data) {
+    let formData = new FormData();
+    fillFormData(formData, data);
+    let resp = (await this.apiClient.post('getUserOrders', formData)).data;
+    return resp;
+  }
+
 };

@@ -11,6 +11,7 @@
           large
           text
           class="white--text"
+          to="/"
         >
           WebShop
         </v-btn>
@@ -79,8 +80,8 @@
       
     </v-app-bar>
 
-    <v-container fluid fill-height>
-      <v-main class="fill-height">
+    <v-container fluid fill-height style="padding: 0;">
+      <v-main class="fill-height pt-15 px-0">
         <router-view/>
       </v-main>
     </v-container>

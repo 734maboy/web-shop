@@ -63,6 +63,8 @@ export const actions = {
       dispatch('manager/getAllOrders', {} ,{ root: true });
       dispatch('manager/getStatuses', {} ,{ root: true });
       dispatch('admin/getUsersList', {} ,{ root: true });
+    } else {
+      dispatch('customer/getUserOrders', data.customer.id, {root: true});
     }
   },
 
