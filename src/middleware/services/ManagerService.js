@@ -21,5 +21,11 @@ export default {
     fillFormData(formData, data);
 
     this.apiClient.post('closeOrder', formData);
+
+  },
+
+  async getStatuses() {
+    let resp = (await this.apiClient.post('getOrderStatuses')).data;
+    return resp;
   },
 };

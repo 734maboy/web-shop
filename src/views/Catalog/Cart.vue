@@ -34,13 +34,16 @@
               <v-card-title>Ваш заказ</v-card-title>
               <v-divider></v-divider>
               <v-card-text style="height: 500px; min-width: 700px;">
-                <v-card
-                  v-for="product in products"
-                  :key="product.id + 'c'">
-                  <v-card-title> {{product.name}} </v-card-title>
-                  <v-card-subtitle> {{product.price}} Р. </v-card-subtitle>
-                  <v-card-text> {{product.count}} </v-card-text>
-                </v-card>
+                <v-layout column>
+                  <v-card
+                    class="my-2"
+                    v-for="product in products"
+                    :key="product.id + 'c'">
+                    <v-card-title> {{product.name}} </v-card-title>
+                    <v-card-subtitle> Цена:  {{product.price}} Р. (за шт.) </v-card-subtitle>
+                    <v-card-text> Кол-во: {{product.count}} </v-card-text>
+                  </v-card>
+                </v-layout>
               </v-card-text>
               <v-divider></v-divider>
               <v-card-actions>
@@ -67,6 +70,9 @@
     <v-card-subtitle>
       {{cartMessage}}
     </v-card-subtitle>
+    <v-card-text v-if="products.length > 0">
+      На сумму {{totalPrice}}
+    </v-card-text>
     <v-layout
       fill-height
       column
@@ -112,6 +118,7 @@ export default {
     createOrder() {
       this.$store.dispatch('customer/createOrder');
       this.dialog = false;
+      this.$store.dispatch('catalog/clearCart');
     },
   },
 
@@ -124,7 +131,10 @@ export default {
     },
     cartIsEmpty() {
       return this.products.length > 0 ? false : true;
-    }
+    },
+    totalPrice() {
+      return this.products.reduce((prev, item) => prev + (item.price * item.count), 0);
+    },
   }
 
 }

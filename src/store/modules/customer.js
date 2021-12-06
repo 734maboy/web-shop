@@ -36,6 +36,8 @@ export const mutations = {
     });
   },
 
+  
+
 
 };
 
@@ -53,9 +55,7 @@ export const actions = {
      (state.orders);
   },
 
-  async getAllOrders() {
-    // let resp = await ()
-  },
+  
 
   deleteOrder({commit}, orderId) {
     CustomerService.deleteOrder(orderId);

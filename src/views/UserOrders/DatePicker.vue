@@ -10,6 +10,7 @@
   >
   <template v-slot:activator="{ on, attrs }">
     <v-text-field
+      width="300"
       v-model="dateTo"
       label="Дата доставки"
       prepend-icon="mdi-calendar"
@@ -60,3 +61,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+  .v-text-field {
+    width: 250px;
+  }
+</style>

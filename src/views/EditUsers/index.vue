@@ -36,6 +36,7 @@
           />
           <v-text-field
             v-model="editedItem.discount"
+            type="number"
             label="Скидка"
           />
         </template>          

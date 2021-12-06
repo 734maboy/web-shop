@@ -71,6 +71,7 @@ export default ({
       if (message != undefined) {
         this.$refs.signInForm.setAlert(message);
       } else {
+        this.$router.push('/');
         this.$refs.signInForm.resetForm();
       }
     },

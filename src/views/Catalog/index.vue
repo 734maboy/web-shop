@@ -3,7 +3,6 @@
     
     class="px-4"
   >
-    <categories/>
     <v-layout
       style="max-height: 85vh;"
       class="mx-5 px-4 py-2 my-2 overflow-auto outlined product-list-border"

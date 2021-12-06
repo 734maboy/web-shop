@@ -18,26 +18,65 @@
 
       <v-spacer></v-spacer>
 
-      <router-link
-        v-for="route in routes"
-        :key="route.path"
-        :to="route.path">
-          <v-btn 
+
+      <template v-if="!isLogged">
+        <v-btn 
             color="secondary"
             class="mx-2"
+            :to="'/signup'"
           >
-            {{route.title}}
+            Регистрация
           </v-btn>
-      </router-link>
+        <v-btn 
+            color="secondary"
+            class="mx-2"
+            :to="'/signin'"
+          >
+            Авторизация
+          </v-btn>
+      </template>
+      <template v-if="isLogged">
+        <template v-if="!isAdmin && !isManager">
+          <v-btn
+            color="secondary"
+            class="mx-2"
+            :to="'/catalog'"
+          >
+            Каталог
+          </v-btn>
+        </template>
+        <v-btn v-if="!isAdmin"
+          color="secondary"
+          class="mx-2"
+          :to="'/user-orders'"
+        >
+          Заказы
+        </v-btn>
+        <template v-if="isAdmin || isManager">
+          <v-btn
+            color="secondary"
+            class="mx-2"
+            :to="'/edit-users'"
+          >
+            Пользователи
+          </v-btn>
+          <v-btn
+            color="secondary"
+            class="mx-2"
+            :to="'/edit-products'"
+          >
+            Товары
+          </v-btn>
+        </template>
+        <v-btn
+          color="secondary"
+          class="mx-2"
+          @click="logOut"
+        >
+          Выйти
+        </v-btn>
+      </template>
       
-      <v-btn
-        v-if="isLogged"
-        color="secondary"
-        class="mx-2"
-        @click="logOut"
-      >
-        Выйти
-      </v-btn>
     </v-app-bar>
 
     <v-container fluid fill-height>
@@ -65,6 +104,7 @@ export default {
   methods: {
     logOut() {
       this.$store.dispatch('user/logOut');
+      this.$router.push('/signin');
     },
   },
 
@@ -72,7 +112,13 @@ export default {
   computed: {
     isLogged() {
       return this.$store.getters['user/isLogged'];
-    }
+    },
+    isAdmin() {
+      return this.$store.getters['user/isAdmin'];
+    },
+    isManager() {
+      return this.$store.getters['user/isManager'];
+    },
   }
 
   

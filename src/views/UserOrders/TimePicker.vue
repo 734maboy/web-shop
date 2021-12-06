@@ -13,7 +13,7 @@
     <template v-slot:activator="{ on, attrs }">
       <v-text-field
         v-model="time"
-        label="Picker in menu"
+        label="Время доставки"
         prepend-icon="mdi-clock-time-four-outline"
         readonly
         v-bind="attrs"
@@ -47,3 +47,9 @@
     },
   }
 </script>
+
+<style scoped>
+  .v-text-field {
+    width: 250px;
+  }
+</style>

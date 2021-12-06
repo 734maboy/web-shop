@@ -21,6 +21,10 @@ export const mutations = {
     });
   },
 
+  CLEAR_CART: (state) => {
+    state.cartProducts = [];
+  },
+
   ADD_PRODUCT: (state, product) => {
     let isExists = false; 
     state.cartProducts.map((item) => {
@@ -68,6 +72,10 @@ export const mutations = {
 };
 
 export const actions = {
+  
+  clearCart({commit}) {
+    commit('CLEAR_CART');
+  },
 
   async getAllProducts({commit}, _) {
     let products = await ProductService.getAllProducts();

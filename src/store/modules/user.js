@@ -61,6 +61,7 @@ export const actions = {
     if (data.user.role != 'Заказчик') {
       commit('customer/UNSET_DATA', null, {root: true});
       dispatch('manager/getAllOrders', {} ,{ root: true });
+      dispatch('manager/getStatuses', {} ,{ root: true });
       dispatch('admin/getUsersList', {} ,{ root: true });
     }
   },
@@ -93,6 +94,7 @@ export const actions = {
       else {
         dispatch('admin/getUsersList', {}, {root: true});
         dispatch('manager/getAllOrders', {} ,{ root: true });
+        dispatch('manager/getStatuses', {} ,{ root: true });
       }
       dispatch('catalog/getAllProducts', {} ,{ root: true });
       dispatch('catalog/getAllCategories', {} ,{ root: true });

@@ -18,6 +18,7 @@
         ></v-text-field>
         <v-text-field
           v-model="editedItem.price"
+          type="number"
           label="Price"
         ></v-text-field>
         <v-select

@@ -1,16 +1,16 @@
 <template>
   <v-card 
-      max-width="400"
+      min-width="500"
       class="my-2"
       outlined
     >
       <v-card-text>
         <v-col>
           <v-row>
-            <span>Дата заказа: {{order.orderDate}}</span>
+            <span>Дата заказа: {{order.orderDate.split('T').join('  ')}}</span>
           </v-row>  
           <v-row v-if="order.orderStatus.name != 'Новый'">
-            <span> Дата поставки: {{order.shipmentDate}} </span>
+            <span> Дата поставки: {{order.shipmentDate.split('T').join('  ')}} </span>
           </v-row>
           <v-row>
             <span>Номер заказа: {{order.orderNumber}}</span>
@@ -28,18 +28,21 @@
           v-if="isManager"
         >
           <template v-if="order.orderStatus.name == 'Новый'">
-            <date-picker
-              @getActDate="saveDate"
-            />
-            <time-picker
-              @getActTime="saveTime"
-            />
-            <v-btn
-              class="success"
-              @click="acceptOrder"
-            >
-              Подтвердить
-            </v-btn>
+            <v-layout column>
+              <date-picker
+                @getActDate="saveDate"
+              />
+              <time-picker
+                @getActTime="saveTime"
+              />
+              <v-btn
+                class="success"
+                @click="acceptOrder"
+                max-width="200"
+              >
+                Подтвердить
+              </v-btn>
+            </v-layout>
           </template>
           <v-btn
             v-if="order.orderStatus.name == 'Выполняется'"
